@@ -22,7 +22,7 @@ export default function About() {
           <div>
             <p className="text-lg text-gray-300 mb-6">
               En <span className="text-accent font-semibold">RMGestioNode</span> nos apasiona la <span className="text-accent font-semibold">automatización inteligente</span> y 
-              la gestión eficiente de procesos. Con más de 5 años de experiencia, hemos trabajado con 
+              la gestión eficiente de procesos. Con más de 2 años de experiencia, hemos trabajado con 
               empresas de distintos sectores, desde startups hasta grandes corporaciones.
             </p>
             <p className="text-lg text-gray-300 mb-6">
