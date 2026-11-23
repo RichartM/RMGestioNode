@@ -9,6 +9,7 @@ module.exports = {
         gris: '#5d616b',
         linea: '#e2dfd7',
         acento: '#1d6b57',
+        'acento-claro': '#5cc4a5',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],

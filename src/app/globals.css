@@ -17,6 +17,34 @@ body {
   color: #fff;
 }
 
+/* Aparición al bajar */
+.revelar {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .revelar { opacity: 1; transform: none; transition: none; }
+}
+
+/* Pulso del diagrama de Kafka */
+@keyframes pulso {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: calc(100% - 8px); opacity: 0; }
+}
+.pulso { animation: pulso 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .pulso { display: none; } }
+
+/* Tiempo restante de la pestaña activa (OpticaSaaS) */
+@keyframes llenar { from { width: 0; } to { width: 100%; } }
+.barra-tiempo { animation: llenar 6s linear forwards; }
+
 /* Carrusel de tecnologías */
 .carrusel {
   mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);

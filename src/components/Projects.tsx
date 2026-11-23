@@ -1,3 +1,6 @@
+import Reveal from './Reveal';
+import SectionTitle from './SectionTitle';
+
 const proyectos = [
   {
     t: 'Agencia de vehículos — app web y móvil',
@@ -14,13 +17,12 @@ const proyectos = [
 export default function Projects() {
   return (
     <section id="proyectos" className="border-b border-linea py-20 sm:py-28">
-      <div className="seccion grid gap-10 lg:grid-cols-[16rem_1fr]">
-        <div>
-          <p className="etiqueta">Otros proyectos</p>
-        </div>
-        <div className="divide-y divide-linea border-y border-linea">
-          {proyectos.map((p) => (
-            <article key={p.t} className="py-7">
+      <div className="seccion">
+        <SectionTitle n="03" nombre="Otros proyectos" titulo="Antes de OpticaSaaS, ya resolvía problemas reales." />
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {proyectos.map((p, i) => (
+            <Reveal key={p.t} delay={i * 120} className="h-full">
+            <article className="h-full rounded-xl border border-linea bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(22,24,29,0.45)] sm:p-7">
               <h3 className="text-lg font-medium">{p.t}</h3>
               <p className="mt-2 max-w-3xl text-[15px] leading-relaxed text-gris">{p.d}</p>
               <div className="mt-4 flex flex-wrap gap-1.5">
@@ -29,6 +31,7 @@ export default function Projects() {
                 ))}
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
       </div>

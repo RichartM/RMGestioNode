@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import ScrollProgress from './ScrollProgress';
 
 const enlaces = [
   { nombre: 'Proyecto', href: '#opticasaas' },
@@ -52,6 +53,7 @@ export default function Header() {
           ))}
         </nav>
       )}
+      <ScrollProgress />
     </header>
   );
 }

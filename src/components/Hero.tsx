@@ -1,64 +1,63 @@
-const datos = [
-  { t: 'Ahora', v: 'OpticaSaaS — SaaS para ópticas en producción', href: 'https://opticasaas.com' },
-  { t: 'Último puesto', v: 'Programador backend · Exos Technology' },
-  { t: 'Formación', v: 'Ing. en Desarrollo de Software · UTEZ' },
-  { t: 'Ubicación', v: 'Cuernavaca, Morelos · remoto o presencial' },
+import Counter from './Counter';
+import Reveal from './Reveal';
+
+const cifras = [
+  { n: 9, s: '+', t: 'microservicios en Kubernetes en los que trabajé en Exos' },
+  { n: 1, s: '', t: 'SaaS propio en producción, de la base de datos al cobro' },
+  { n: 6, s: '', t: 'APIs externas integradas: Stripe, CFDI, WhatsApp, Claude, Alexa y Google' },
 ];
 
 export default function Hero() {
   return (
     <section id="inicio" className="border-b border-linea pt-28 sm:pt-36">
-      <div className="seccion grid gap-12 pb-16 sm:pb-24 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-        <div>
-          <p className="etiqueta">Desarrollador Full Stack</p>
-          <h1 className="mt-5 text-[2.6rem] font-semibold leading-[1.05] tracking-tight sm:text-6xl">
-            Luis Ricardo
+      <div className="seccion pb-16 sm:pb-20">
+        <Reveal>
+          <p className="etiqueta flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-acento opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-acento" />
+            </span>
+            Disponible · Desarrollador Full Stack · Cuernavaca, Mor.
+          </p>
+        </Reveal>
+        <Reveal delay={80}>
+          <h1 className="mt-6 max-w-4xl text-[2.6rem] font-semibold leading-[1.04] tracking-tight sm:text-7xl">
+            Hola, soy Ricardo.
             <br />
-            Medina Villagómez
+            <span className="text-gris">Llevo ideas del pizarrón</span> a producción.
           </h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-gris">
-            Construyo software completo: la API, la base de datos, la app web o móvil y la infraestructura para que
-            corra en producción. Mi fuerte es el backend con Node.js, NestJS, Spring Boot y Django.
+        </Reveal>
+        <Reveal delay={160}>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-gris">
+            Backend con Node.js, NestJS, Spring Boot y Django; apps web y móviles con React, Next.js, React Native y
+            Flutter; y la infraestructura para que todo corra en producción. Mi prueba más reciente: un sistema completo
+            para ópticas que diseñé, programé y opero yo mismo.
           </p>
-          <p className="mt-4 max-w-xl text-lg leading-relaxed text-gris">
-            Trabajé en una arquitectura de más de nueve microservicios con Kafka, Elasticsearch y Kubernetes. Hoy
-            mantengo <span className="text-tinta">OpticaSaaS</span>, un sistema para ópticas que diseñé y programé
-            desde cero y que opera en producción con pagos, facturación electrónica e IA.
-          </p>
+        </Reveal>
+        <Reveal delay={240}>
           <div className="mt-9 flex flex-wrap gap-3">
-            <a href="#opticasaas" className="rounded-md bg-tinta px-5 py-2.5 text-sm font-medium text-papel transition hover:bg-acento">
-              Ver el proyecto
+            <a href="#opticasaas" className="group rounded-md bg-tinta px-5 py-3 text-sm font-medium text-papel transition hover:bg-acento">
+              Ver cómo lo construí <span className="inline-block transition group-hover:translate-y-0.5">↓</span>
             </a>
-            <a href="#contacto" className="rounded-md border border-tinta/20 px-5 py-2.5 text-sm font-medium transition hover:border-tinta">
+            <a href="#contacto" className="rounded-md border border-tinta/20 px-5 py-3 text-sm font-medium transition hover:border-tinta">
               Contacto
             </a>
-            <a
-              href="https://github.com/RichartM"
-              target="_blank"
-              rel="noreferrer"
-              className="px-2 py-2.5 text-sm font-medium text-gris underline-offset-4 transition hover:text-tinta hover:underline"
-            >
+            <a href="https://github.com/RichartM" target="_blank" rel="noreferrer" className="px-2 py-3 text-sm font-medium text-gris underline-offset-4 transition hover:text-tinta hover:underline">
               GitHub ↗
             </a>
           </div>
-        </div>
+        </Reveal>
 
-        <dl className="self-end border-t border-linea lg:border-t-0">
-          {datos.map((d) => (
-            <div key={d.t} className="grid grid-cols-[7.5rem_1fr] gap-4 border-b border-linea py-3.5 text-sm">
-              <dt className="etiqueta pt-0.5">{d.t}</dt>
-              <dd>
-                {d.href ? (
-                  <a href={d.href} target="_blank" rel="noreferrer" className="underline decoration-linea underline-offset-4 hover:decoration-tinta">
-                    {d.v}
-                  </a>
-                ) : (
-                  d.v
-                )}
-              </dd>
-            </div>
+        <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-linea bg-linea sm:grid-cols-3">
+          {cifras.map((c, i) => (
+            <Reveal key={c.t} delay={300 + i * 100} className="bg-papel p-6">
+              <p className="text-5xl font-semibold tracking-tight">
+                <Counter to={c.n} suffix={c.s} />
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-gris">{c.t}</p>
+            </Reveal>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );

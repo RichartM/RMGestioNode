@@ -1,3 +1,6 @@
+import Reveal from './Reveal';
+import SectionTitle from './SectionTitle';
+
 const formacion = [
   {
     t: 'Ingeniería en Desarrollo y Gestión de Software Multiplataforma',
@@ -14,11 +17,9 @@ const formacion = [
 export default function Education() {
   return (
     <section id="formacion" className="border-b border-linea py-20 sm:py-28">
-      <div className="seccion grid gap-10 lg:grid-cols-[16rem_1fr]">
-        <div>
-          <p className="etiqueta">Formación</p>
-        </div>
-        <div>
+      <div className="seccion">
+        <SectionTitle n="05" nombre="Formación" titulo="Ingeniero en formación, con cédula y experiencia en producción." />
+        <Reveal delay={100} className="mt-10">
           <ul className="divide-y divide-linea border-y border-linea">
             {formacion.map((f) => (
               <li key={f.t} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-5">
@@ -33,7 +34,7 @@ export default function Education() {
           <p className="mt-6 text-sm text-gris">
             Inglés B1: lectura técnica y conversación básica-intermedia. Trabajo con Scrum, Kanban y XP.
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

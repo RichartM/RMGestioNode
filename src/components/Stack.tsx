@@ -1,3 +1,6 @@
+import Reveal from './Reveal';
+import SectionTitle from './SectionTitle';
+
 const grupos = [
   { t: 'Backend', v: ['Node.js', 'NestJS', 'Express', 'Fastify', 'Java · Spring Boot', 'Spring Batch', 'Python · Django', 'Laravel'] },
   { t: 'Frontend y móvil', v: ['React', 'Next.js', 'TypeScript', 'PWA', 'React Native', 'Flutter · Dart', 'Angular', 'Vue'] },
@@ -14,21 +17,30 @@ const grupos = [
 export default function Stack() {
   return (
     <section id="stack" className="border-b border-linea py-20 sm:py-28">
-      <div className="seccion grid gap-10 lg:grid-cols-[16rem_1fr]">
-        <div>
-          <p className="etiqueta">Stack</p>
-          <p className="mt-4 max-w-[15rem] text-sm leading-relaxed text-gris">
-            Lo que uso a diario y lo que he llevado a producción. Aprendo rápido lo que haga falta para el proyecto.
-          </p>
-        </div>
-        <dl className="border-t border-linea">
-          {grupos.map((g) => (
-            <div key={g.t} className="grid gap-2 border-b border-linea py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
-              <dt className="text-sm font-medium">{g.t}</dt>
-              <dd className="text-[15px] leading-relaxed text-gris">{g.v.join('  ·  ')}</dd>
-            </div>
+      <div className="seccion">
+        <SectionTitle
+          n="04"
+          nombre="Stack"
+          titulo="Del backend al celular, y de ahí a la nube."
+          bajada="Lo que uso a diario y lo que ya llevé a producción. Aprendo rápido lo que haga falta para el proyecto."
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {grupos.map((g, i) => (
+            <Reveal key={g.t} delay={(i % 3) * 90} className="h-full">
+              <div className="h-full rounded-xl border border-linea bg-white p-5">
+                <p className="flex items-baseline gap-2 font-medium">
+                  <span className="font-mono text-xs text-acento">{String(i + 1).padStart(2, '0')}</span>
+                  {g.t}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {g.v.map((v) => (
+                    <span key={v} className="rounded bg-papel px-2 py-0.5 text-[13px] text-tinta/80">{v}</span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );

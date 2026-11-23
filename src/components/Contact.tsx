@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type ChangeEvent, type FormEvent } from 'react';
+import Reveal from './Reveal';
 
 // Los mensajes del formulario llegan a una hoja de Google Sheets (ver GOOGLE_SHEETS_SETUP.md).
 const GOOGLE_SCRIPT_URL =
@@ -35,33 +36,34 @@ export default function Contact() {
   }
 
   const campo =
-    'w-full rounded-md border border-linea bg-white px-3.5 py-2.5 text-[15px] outline-none transition placeholder:text-gris/60 focus:border-tinta';
+    'w-full rounded-md border border-papel/15 bg-papel/[0.05] px-3.5 py-2.5 text-[15px] text-papel outline-none transition placeholder:text-papel/40 focus:border-papel/60';
 
   return (
-    <section id="contacto" className="py-20 sm:py-28">
+    <section id="contacto" className="bg-tinta py-20 text-papel sm:py-28">
       <div className="seccion grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-        <div>
-          <p className="etiqueta">Contacto</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">¿Platicamos?</h2>
-          <p className="mt-4 max-w-md text-lg leading-relaxed text-gris">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-papel/50"><span className="text-acento-claro">06</span> — Contacto</p>
+          <h2 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">¿Tienes un proyecto o una vacante?</h2>
+          <p className="mt-5 max-w-md text-lg leading-relaxed text-papel/65">
             Busco sumarme a un equipo de producto o colaborar en proyectos de backend, web o móvil. Contesto el mismo
             día.
           </p>
-          <dl className="mt-10 border-t border-linea">
+          <dl className="mt-10 border-t border-papel/15">
             {medios.map((m) => (
-              <div key={m.t} className="grid grid-cols-[6.5rem_1fr] border-b border-linea py-3.5 text-[15px]">
-                <dt className="etiqueta pt-0.5">{m.t}</dt>
+              <div key={m.t} className="grid grid-cols-[6.5rem_1fr] border-b border-papel/15 py-3.5 text-[15px]">
+                <dt className="pt-0.5 font-mono text-xs uppercase tracking-[0.14em] text-papel/45">{m.t}</dt>
                 <dd>
-                  <a href={m.href} target={m.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="underline decoration-linea underline-offset-4 hover:decoration-tinta">
+                  <a href={m.href} target={m.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="underline decoration-papel/25 underline-offset-4 hover:decoration-papel">
                     {m.v}
                   </a>
                 </dd>
               </div>
             ))}
           </dl>
-        </div>
+        </Reveal>
 
-        <form onSubmit={enviar} className="space-y-3 self-end">
+        <Reveal delay={150} className="self-end">
+        <form onSubmit={enviar} className="space-y-3">
           <div className="grid gap-3 sm:grid-cols-2">
             <input name="name" value={form.name} onChange={cambiar} placeholder="Nombre" required className={campo} />
             <input name="email" type="email" value={form.email} onChange={cambiar} placeholder="Correo" required className={campo} />
@@ -72,14 +74,15 @@ export default function Contact() {
             <button
               type="submit"
               disabled={estado === 'enviando'}
-              className="rounded-md bg-tinta px-5 py-2.5 text-sm font-medium text-papel transition hover:bg-acento disabled:opacity-60"
+              className="rounded-md bg-papel px-5 py-2.5 text-sm font-medium text-tinta transition hover:bg-acento-claro disabled:opacity-60"
             >
               {estado === 'enviando' ? 'Enviando…' : 'Enviar mensaje'}
             </button>
-            {estado === 'enviado' && <p className="text-sm text-acento">Recibido. Te escribo pronto.</p>}
-            {estado === 'error' && <p className="text-sm text-red-700">No se pudo enviar. Escríbeme directo al correo.</p>}
+            {estado === 'enviado' && <p className="text-sm text-acento-claro">Recibido. Te escribo pronto.</p>}
+            {estado === 'error' && <p className="text-sm text-red-300">No se pudo enviar. Escríbeme directo al correo.</p>}
           </div>
         </form>
+        </Reveal>
       </div>
     </section>
   );
