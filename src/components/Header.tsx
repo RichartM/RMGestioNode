@@ -1,70 +1,57 @@
 'use client';
 
-import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
+const enlaces = [
+  { nombre: 'Proyecto', href: '#opticasaas' },
+  { nombre: 'Experiencia', href: '#experiencia' },
+  { nombre: 'Stack', href: '#stack' },
+  { nombre: 'Contacto', href: '#contacto' },
+];
+
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  const navLinks = [
-    { name: 'Inicio', href: '#home' },
-    { name: 'Sobre Mí', href: '#about' },
-    { name: 'Servicios', href: '#services' },
-    { name: 'Proyectos', href: '#projects' },
-    { name: 'Contacto', href: '#contact' },
-  ];
+  const [abierto, setAbierto] = useState(false);
 
   return (
-    <header className="fixed top-0 w-full bg-primary/95 backdrop-blur z-50 border-b border-secondary/30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold gradient-text">
-              RMGestioNode
-            </Link>
-          </div>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-linea bg-papel/90 backdrop-blur">
+      <div className="seccion flex h-14 items-center justify-between">
+        <a href="#inicio" className="text-[15px] font-semibold tracking-tight">
+          Ricardo Medina
+        </a>
 
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-gray-300 hover:text-accent transition duration-300"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-300"
-            onClick={toggleMenu}
+        <nav className="hidden items-center gap-7 text-sm text-gris md:flex">
+          {enlaces.map((e) => (
+            <a key={e.href} href={e.href} className="transition hover:text-tinta">
+              {e.nombre}
+            </a>
+          ))}
+          <a
+            href="mailto:ricardornv07t@gmail.com"
+            className="rounded-md bg-tinta px-3.5 py-1.5 text-[13px] font-medium text-papel transition hover:bg-acento"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+            Escríbeme
+          </a>
+        </nav>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <nav className="md:hidden pb-4 flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-gray-300 hover:text-accent py-2 px-2 rounded transition"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
-        )}
+        <button
+          className="text-sm text-gris md:hidden"
+          onClick={() => setAbierto((v) => !v)}
+          aria-expanded={abierto}
+          aria-label="Menú"
+        >
+          {abierto ? 'Cerrar' : 'Menú'}
+        </button>
       </div>
+
+      {abierto && (
+        <nav className="seccion flex flex-col border-t border-linea pb-3 md:hidden">
+          {enlaces.map((e) => (
+            <a key={e.href} href={e.href} onClick={() => setAbierto(false)} className="py-2.5 text-sm text-gris">
+              {e.nombre}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
